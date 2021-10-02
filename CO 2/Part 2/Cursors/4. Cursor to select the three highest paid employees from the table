@@ -1,0 +1,15 @@
+declare
+i number:=0;
+cursor cur is select emp_id,company_name,salary from works order by salary desc;
+r cur%rowtype;
+begin
+open cur;
+loop
+exit when i=3;
+fetch cur into r;
+dbms_output.put_line(r.emp_id||' '||r.company_name||' '||r.salary);
+i:=i+1;
+end loop;
+close cur;
+end;
+/
