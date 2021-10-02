@@ -1,0 +1,26 @@
+//Function creation
+
+create or replace function add_fun(a number,b number) return number as
+c number;
+begin
+c:=a+b;
+return c;
+end;
+/
+
+
+//Program
+
+declare
+result number;
+begin
+result:=add_fun(30,40);
+dbms_output.put_line('Result is: '||result);
+end;
+/
+
+-----------------------------------------------------------------------------
+
+Output
+
+Result is: 70
