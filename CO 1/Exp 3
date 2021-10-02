@@ -1,0 +1,110 @@
+//Table Creation
+
+create table customer(id integer primary key,name varchar(20),age char(20),address varchar(20),salary float);
+
+Table created.
+
+
+//Insertion
+
+insert into customer values(1,'Ramesh',32,'Ahmedabad',2000.00);
+
+insert into customer values(2,'Khilan',25,'Dhelhi',1500.00);
+
+insert into customer values(3,'Kaushik',23,'Kota',2000.00);
+
+insert into customer values(4,'Chaitali',25,'Mumbai',6500.00);
+
+insert into customer values(5,'Hardik',27,'Bhopal',8500.00);
+
+insert into customer values(6,'Komal',22,'MP',4500.00);
+
+insert into customer values(7,'Muffy',24,'Indore',10000.00);
+
+
+
+
+select * from customer;
+
+        ID NAME                 AGE                  ADDRESS                  SALARY
+---------- -------------------- -------------------- -------------------- ----------
+         1 Ramesh               32                   Ahmedabad                  2000
+         2 Khilan               25                   Dhelhi                     1500
+         3 Kaushik              23                   Kota                       2000
+         4 Chaitali             25                   Mumbai                     6500
+         5 Hardik               27                   Bhopal                     8500
+         6 Komal                22                   MP                         4500
+         7 Muffy                24                   Indore                    10000
+
+
+//Table Creation
+
+create table orders(oid integer,dates varchar(15),customer_id integer,amount integer);
+
+
+//Insertion
+
+insert into orders values(102,'2009-10-08',3,3000);
+
+insert into orders values(100,'2009-10-08',3,1500);
+
+insert into orders values(101,'2009-11-20',2,1560);
+
+insert into orders values(103,'2008-05-20',4,2060);
+
+
+select * from orders;
+
+       OID DATES           CUSTOMER_ID     AMOUNT
+---------- --------------- ----------- ----------
+       102 2009-10-08                3       3000
+       100 2009-10-08                3       1500
+       101 2009-11-20                2       1560
+       103 2008-05-20                4       2060
+
+
+
+A)   SQL> select id,name,amount,dates from customer inner join orders on customer.id = orders.customer_id;
+
+            ID NAME                     AMOUNT DATES
+         ---------- -------------------- ---------- ---------------
+          2 Khilan                     1560 2009-11-20
+          3 Kaushik                    1500 2009-10-08
+          3 Kaushik                    3000 2009-10-08
+          4 Chaitali                   2060 2008-05-20
+
+B)   SQL> select id,name,amount,dates from customer left join orders on customer.id = orders.customer_id;
+
+           ID NAME                     AMOUNT DATES
+       ---------- -------------------- ---------- ---------------
+          3 Kaushik                    3000 2009-10-08
+          3 Kaushik                    1500 2009-10-08
+          2 Khilan                     1560 2009-11-20
+          4 Chaitali                   2060 2008-05-20
+          5 Hardik
+          1 Ramesh
+          6 Komal
+          7 Muffy
+
+    
+C)   SQL> select id,name,amount,dates from customer right join orders on customer.id = orders.customer_id;
+
+           ID NAME                     AMOUNT DATES
+        ---------- -------------------- ---------- ---------------
+          2 Khilan                     1560 2009-11-20
+          3 Kaushik                    1500 2009-10-08
+          3 Kaushik                    3000 2009-10-08
+          4 Chaitali                   2060 2008-05-20
+
+D)   SQL> select id,name,amount,dates from customer full join orders on customer.id = orders.customer_id;
+
+           ID NAME                     AMOUNT DATES
+        ---------- -------------------- ---------- ---------------
+          1 Ramesh
+          2 Khilan                     1560 2009-11-20
+          3 Kaushik                    1500 2009-10-08
+          3 Kaushik                    3000 2009-10-08
+          4 Chaitali                   2060 2008-05-20
+          5 Hardik
+          6 Komal
+          7 Muffy
