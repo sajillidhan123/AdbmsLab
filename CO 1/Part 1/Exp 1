@@ -79,7 +79,7 @@ F) SQL> select * from student order by marks;
 G) select name from student where dept= 'CS' and marks>500;
 
 	
-H) select name from student where marks>(select avg(marks)from student_fathima);
+H) select name from student where marks>(select avg(marks)from student);
 
 
 I)  drop table student;
