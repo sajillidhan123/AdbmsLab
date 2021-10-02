@@ -13,10 +13,10 @@ end;
 ---------------------------------------------------------------------------------------------------
 Output
 
-Enter value for a: 5
-old   6:      a:=&a;
+Enter value for num1: 5
+old   6:      a:=&num1;
 new   6:      a:=10;
-Enter value for b: 10
-old   7:      b:=&b;
+Enter value for num2: 10
+old   7:      b:=&num2;
 new   7:      b:=20;
 sum of 5 and 10 is 15
