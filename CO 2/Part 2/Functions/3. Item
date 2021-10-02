@@ -1,0 +1,40 @@
+//Table Creation
+
+create table item(item_id integer primary key,itemname varchar(20),price float);
+
+//Insertion
+
+insert into item values(&item_id,'&itemname',&price);
+
+//Function Creation
+
+create or replace function itemprice(id number) return number is
+  2  p item.price % type;
+  3  begin
+  4  select price into p from item where item_id=id;
+  5  return(p);
+  6  end;
+  7  /
+
+
+//Program
+
+declare
+pr number;
+id number;
+begin
+id:=&itemid;
+pr:=itemprice(id);
+dbms_output.put_line('item price is RS:'||pr);
+end;
+/
+
+
+--------------------------------------------------------------------------------------
+
+Output
+
+Enter value for itemid: 4
+old   5: id:=&itemid;
+new   5: id:=4;
+item price is RS:20
