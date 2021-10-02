@@ -7,36 +7,24 @@ Table created.
 
 //Insertion
 
-SQL> insert into customer values(1,'Ramesh',32,'Ahmedabad',2000.00);
+insert into customer values(1,'Ramesh',32,'Ahmedabad',2000.00);
 
-1 row created.
+insert into customer values(2,'Khilan',25,'Dhelhi',1500.00);
 
-SQL> insert into customer values(2,'Khilan',25,'Dhelhi',1500.00);
+insert into customer values(3,'Kaushik',23,'Kota',2000.00);
 
-1 row created.
+insert into customer values(4,'Chaitali',25,'Mumbai',6500.00);
 
-SQL> insert into customer values(3,'Kaushik',23,'Kota',2000.00);
+insert into customer values(5,'Hardik',27,'Bhopal',8500.00);
 
-1 row created.
+insert into customer values(6,'Komal',22,'MP',4500.00);
 
-SQL> insert into customer values(4,'Chaitali',25,'Mumbai',6500.00);
-
-1 row created.
-
-SQL> insert into customer values(5,'Hardik',27,'Bhopal',8500.00);
-
-1 row created.
-
-SQL> insert into customer values(6,'Komal',22,'MP',4500.00);
-
-1 row created.
-
-SQL> insert into customer values(7,'Muffy',24,'Indore',10000.00);
-
-1 row created.
+insert into customer values(7,'Muffy',24,'Indore',10000.00);
 
 
-SQL> select * from customer;
+
+
+select * from customer;
 
         ID NAME                 AGE                  ADDRESS                  SALARY
 ---------- -------------------- -------------------- -------------------- ----------
@@ -48,34 +36,24 @@ SQL> select * from customer;
          6 Komal                22                   MP                         4500
          7 Muffy                24                   Indore                    10000
 
-7 rows selected.
 
 //Table Creation
 
-SQL> create table orders(oid integer,dates varchar(15),customer_id integer,amount integer);
-
-Table created.
+create table orders(oid integer,dates varchar(15),customer_id integer,amount integer);
 
 
 //Insertion
 
-SQL> insert into orders values(102,'2009-10-08',3,3000);
+insert into orders values(102,'2009-10-08',3,3000);
 
-1 row created.
+insert into orders values(100,'2009-10-08',3,1500);
 
-SQL> insert into orders values(100,'2009-10-08',3,1500);
+insert into orders values(101,'2009-11-20',2,1560);
 
-1 row created.
+insert into orders values(103,'2008-05-20',4,2060);
 
-SQL> insert into orders values(101,'2009-11-20',2,1560);
 
-1 row created.
-
-SQL> insert into orders values(103,'2008-05-20',4,2060);
-
-1 row created.
-
-SQL> select * from orders;
+select * from orders;
 
        OID DATES           CUSTOMER_ID     AMOUNT
 ---------- --------------- ----------- ----------
@@ -108,8 +86,7 @@ B)   SQL> select id,name,amount,dates from customer left join orders on customer
           6 Komal
           7 Muffy
 
-        8 rows selected.
-
+    
 C)   SQL> select id,name,amount,dates from customer right join orders on customer.id = orders.customer_id;
 
            ID NAME                     AMOUNT DATES
@@ -132,4 +109,3 @@ D)   SQL> select id,name,amount,dates from customer full join orders on customer
           6 Komal
           7 Muffy
 
-        8 rows selected.
