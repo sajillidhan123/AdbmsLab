@@ -1,0 +1,93 @@
+> use Inventory
+
+switched to db Inventory
+
+> db.createCollection("Orders")
+
+{ "ok" : 1 }
+
+> db.orders.insert({Custid:100,Name:"Reshma",Item:"Cake",Price:2000})
+
+WriteResult({ "nInserted" : 1 })
+
+> db.orders.insert({Custid:100,Name:"Remya",Item:"Biscuit",Price:500})
+
+WriteResult({ "nInserted" : 1 })
+
+> db.orders.updateMany({Name:"Remya"},{$set:{Custid:101}})
+
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+
+> db.orders.find()
+
+{ "_id" : ObjectId("61419345877df53c3879306d"), "Custid" : 100, "Name" : "Reshma", "Item" : "Cake", "Price" : 2000 }
+
+{ "_id" : ObjectId("61419447877df53c3879306e"), "Custid" : 101, "Name" : "Remya", "Item" : "Biscuit", "Price" : 500 }
+
+> db.orders.insert({Custid:102,Name:"Renjini",Item:"Rice",Price:200})
+
+WriteResult({ "nInserted" : 1 })
+
+> db.orders.insert({Custid:103,Name:"Reeba",Item:"Wheat",Price:200})
+
+WriteResult({ "nInserted" : 1 })
+
+> db.orders.insert({Custid:104,Name:"Reema",Item:"Wheat",Price:200})
+
+WriteResult({ "nInserted" : 1 })
+
+> db.orders.insert({Custid:105,Name:"Reeja",Item:"Mustard Oil",Price:100})
+
+WriteResult({ "nInserted" : 1 })
+
+> db.orders.insert({Custid:106,Name:"Rimi",Item:"Coconut Oil",Price:100})
+
+WriteResult({ "nInserted" : 1 })
+
+> db.orders.insert({Custid:107,Name:"Rimi",Item:"Sugar",Price:150})
+
+WriteResult({ "nInserted" : 1 })
+
+> db.orders.find()
+
+{ "_id" : ObjectId("61419345877df53c3879306d"), "Custid" : 100, "Name" : "Reshma", "Item" : "Cake", "Price" : 2000 }
+
+{ "_id" : ObjectId("61419447877df53c3879306e"), "Custid" : 101, "Name" : "Remya", "Item" : "Biscuit", "Price" : 500 }
+
+{ "_id" : ObjectId("61419633877df53c3879306f"), "Custid" : 102, "Name" : "Renjini", "Item" : "Rice", "Price" : 200 }
+
+{ "_id" : ObjectId("61419666877df53c38793070"), "Custid" : 103, "Name" : "Reeba", "Item" : "Wheat", "Price" : 200 }
+
+{ "_id" : ObjectId("6141967d877df53c38793071"), "Custid" : 104, "Name" : "Reema", "Item" : "Wheat", "Price" : 200 }
+
+{ "_id" : ObjectId("614196ab877df53c38793072"), "Custid" : 105, "Name" : "Reeja", "Item" : "Mustard Oil", "Price" : 100 }
+
+{ "_id" : ObjectId("61419752877df53c38793073"), "Custid" : 106, "Name" : "Rimi", "Item" : "Coconut Oil", "Price" : 100 }
+
+{ "_id" : ObjectId("6141978d877df53c38793074"), "Custid" : 107, "Name" : "Rimi", "Item" : "Sugar", "Price" : 150 }
+
+> var mapFunction = function() {emit(this.Custid,this.Price);};
+
+> var reduceFunction = function(keyCustid,valuesPrices){return Array.sum(valuesPrices);};
+
+> db.orders.mapReduce(mapFunction,reduceFunction,{out:"map_example"})
+
+{ "result" : "map_example", "ok" : 1 }
+
+> db.map_example.find()
+
+{ "_id" : 105, "value" : 100 }
+
+{ "_id" : 106, "value" : 100 }
+
+{ "_id" : 107, "value" : 150 }
+
+{ "_id" : 101, "value" : 500 }
+
+{ "_id" : 103, "value" : 200 }
+
+{ "_id" : 104, "value" : 200 }
+
+{ "_id" : 100, "value" : 2000 }
+
+{ "_id" : 102, "value" : 200 }
