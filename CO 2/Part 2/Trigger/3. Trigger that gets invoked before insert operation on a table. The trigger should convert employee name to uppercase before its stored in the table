@@ -1,4 +1,6 @@
-//Trigger Creation
+Create a trigger that gets invoked before insert operation on a table. The trigger should convert employee name to uppercase before its stored in the table.
+
+//Trigger
 
 create or replace trigger tr2
 before insert on emp1
@@ -7,6 +9,22 @@ begin
 :new.name:=upper(:new.name);
 end;
  /
- 
- 
 
+
+select * from emp1;
+
+        ID NAME                     SALARY
+---------- -------------------- ----------
+         1 Raju                      25200
+         2 Babu                      15200
+         3 Drshya                    32200
+         4 John                      32878
+         5 Kalam                     48200
+
+desc emp1;
+
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER(38)
+ NAME                                               VARCHAR2(20)
+ SALARY                                             NUMBER(38)
