@@ -1,0 +1,87 @@
+//Table Creation
+create table student(rollno integer primary key,name varchar(20),dob date, dept varchar(5),marks float);
+
+
+A)
+insert into student values(1,'amitha','18-jun-1988','CS',480);
+
+insert into student_fathima values(2,'arya','12-jul-1989','IT',500);
+
+insert into student values(3,'hari','02-aug-1999','mca',480);
+
+insert into student values(4,'bavani','03-march-1900','maths',500);
+	
+ 
+select * from student;
+
+    ROLLNO NAME                 DOB       DEPT       MARKS
+---------- -------------------- --------- ----- ----------
+         1 amitha               18-JUN-88 CS           480
+         2 arya                 12-JUL-89 IT           500
+         3 hari                 02-AUG-99 MCA          900
+         4 bavani               03-MAR-00 Maths        300
+        
+
+	
+B) alter table student add(address varchar(10));
+
+SQL> alter table student modify(name varchar(20));
+
+	
+C) select * from student;
+
+    ROLLNO NAME                 DOB       DEPT       MARKS ADDRESS
+---------- -------------------- --------- ----- ---------- ----------
+         1 amitha               18-JUN-88 CS           480
+         2 arya                 12-JUL-89 IT           500
+         3 hari                 02-AUG-99 MCA          900
+         4 bavani               03-MAR-00 Maths        300
+         
+
+desc student;
+ 
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLLNO                                    NOT NULL NUMBER(38)
+ NAME                                               VARCHAR2(20)
+ DOB                                                DATE
+ DEPT                                               VARCHAR2(5)
+ MARKS                                              FLOAT(126)
+ ADDRESS                                            VARCHAR2(10)
+
+D) alter table student modify(address varchar(30));
+
+    Table altered.
+	
+ alter table student modify(address varchar(30));
+
+    Table altered.
+
+update student set address='NO:5,Gandhinagar' where rollno=1;
+
+update student set address='Flat No:5A,Skyline Aluva' where rollno=2;
+
+update student set address='Apple Heights,Padivattom' where rollno=3;
+
+update student set address='Green Valley,Cochin' where rollno=4;
+	
+
+ E) select name,dob from student where months_between(sysdate,dob)/12<22;
+
+       NAME                 DOB
+     -------------------- ---------
+      bavani               03-MAR-00
+
+
+F) SQL> select * from student order by marks;
+
+
+G) select name from student where dept= 'CS' and marks>500;
+
+	
+H) select name from student where marks>(select avg(marks)from student);
+
+
+I)  drop table student;
+    
+     Table dropped.
