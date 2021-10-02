@@ -1,0 +1,145 @@
+> use EMP
+
+switched to db EMP
+
+> show collections
+
+empDetails
+
+> db.empDetails.find()
+
+{ "_id" : ObjectId("611283a5ba6fd56e242ddb3a"), "Name" : "Mohan", "Age" : 30, "Email" : "mohan143@gmail.com", "Salary" : 5000 }
+
+{ "_id" : ObjectId("611283edba6fd56e242ddb3b"), "Name" : "Raju", "Age" : 35, "Email" : "raju@gmail.com", "Salary" : 7000 }
+
+{ "_id" : ObjectId("6112841cba6fd56e242ddb3c"), "Name" : "Bhuvan", "Age" : 25, "Email" : "bhuvan@gmail.com", "Salary" : 10000 }
+
+{ "_id" : ObjectId("6112846aba6fd56e242ddb3d"), "Name" : "Ramchandran", "Age" : 27, "Email" : "ramchandran@gmail.com", "Salary" : 9000 }
+
+{ "_id" : ObjectId("61128532ba6fd56e242ddb3e"), "Name" : "Raman", "Age" : 60, "Email" : "raman@gmail.com", "Salary" : 15000 }
+
+> db.empDetails.updateMany({Name:"Mohan"},{$set:{Department:"Developer"}})
+
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+
+> db.empDetails.updateMany({Name:"Raju"},{$set:{Department:"Designer"}})
+
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+
+> db.empDetails.updateMany({Name:"Bhuvan"},{$set:{Department:"Programmer"}})
+
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+
+> db.empDetails.updateMany({Name:"Ramchandran"},{$set:{Department:"HR"}})
+
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+
+> db.empDetails.updateMany({Name:"Raman"},{$set:{Department:"Tester"}})
+
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+
+> db.empDetails.aggregate([{$group:{_id:"$Department","Salary":{$avg:"$Salary"}}}] )
+
+{ "_id" : "HR", "Salary" : 9000 }
+
+{ "_id" : "Developer", "Salary" : 10000 }
+
+{ "_id" : "Programmer", "Salary" : 10000 }
+
+{ "_id" : "Designer", "Salary" : 7000 }
+
+> db.empDetails.updateMany({Name:"Raman"},{$set:{Department:"Tester"}})
+
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+
+> db.empDetails.aggregate([{$group:{_id:"$Department","Salary":{$avg:"$Salary"}}}] )
+
+{ "_id" : "Developer", "Salary" : 5000 }
+
+{ "_id" : "Designer", "Salary" : 7000 }
+
+{ "_id" : "Tester", "Salary" : 15000 }
+
+{ "_id" : "Programmer", "Salary" : 10000 }
+
+{ "_id" : "HR", "Salary" : 9000 }
+
+
+1. find the average salary of each dept.
+
+
+> db.empDetails.aggregate([{$group:{_id:"$dept","Minimum Salary":{$avg:"$Salary"}}}] )
+
+{ "_id" : null, "Minimum Salary" : 9200 }
+
+
+2. find the minimum salary of each dept.
+
+
+> db.empDetails.aggregate([{$group:{_id:"$dept","Minimum Salary":{$min:"$Salary"}}}] )
+
+{ "_id" : null, "Minimum Salary" : 5000 }
+
+
+3. find the maximum salary of each dept.
+
+> db.empDetails.aggregate([{$group:{_id:"$dept","Maximum Salary":{$max:"$Salary"}}}] )
+
+{ "_id" : null, "Maximum Salary" : 15000 }
+
+
+4. find the no.of employees of each dept.
+
+> db.empDetails.aggregate([{$group:{_id:"$dept","Number of Employees":{$sum:1}}}] )
+
+{ "_id" : null, "Number of Employees" : 5 }
+
+
+5. sort the collection empDetails in descending order of name
+
+> db.empDetails.aggregate([{$group:{_id:"$dept","Number of Employees":{$sum:1}}}] )
+
+{ "_id" : null, "Number of Employees" : 5 }
+
+> db.empDetails.find().sort({"Name":-1})
+
+{ "_id" : ObjectId("6112846aba6fd56e242ddb3d"), "Name" : "Ramchandran", "Age" : 27, "Email" : "ramchandran@gmail.com", "Salary" : 9000, "Department" : "HR" }
+
+{ "_id" : ObjectId("61128532ba6fd56e242ddb3e"), "Name" : "Raman", "Age" : 60, "Email" : "raman@gmail.com", "Salary" : 15000, "Department" : "Tester" }
+
+{ "_id" : ObjectId("611283edba6fd56e242ddb3b"), "Name" : "Raju", "Age" : 35, "Email" : "raju@gmail.com", "Salary" : 7000, "Department" : "Designer" }
+
+{ "_id" : ObjectId("611283a5ba6fd56e242ddb3a"), "Name" : "Mohan", "Age" : 30, "Email" : "mohan143@gmail.com", "Salary" : 5000, "Department" : "Developer" }
+
+{ "_id" : ObjectId("6112841cba6fd56e242ddb3c"), "Name" : "Bhuvan", "Age" : 25, "Email" : "bhuvan@gmail.com", "Salary" : 10000, "Department" : "Programmer" }
+
+
+6. Create a text index for ‘name’ and search for names mohan and bhuvan
+
+> db.empDetails.createIndex({Name:"text"})
+
+{
+
+"numIndexesBefore" : 1,
+
+"numIndexesAfter" : 2,
+
+"createdCollectionAutomatically" : false,
+
+"ok" : 1
+
+}
+
+> db.empDetails.find()
+
+{ "_id" : ObjectId("6141db0be3945e33a7255b56"), "Name" : "Mohan", "Age" : 30, "Email" : "mohan@gmail.com", "Salary" : 5000 }
+
+{ "_id" : ObjectId("6141db14e3945e33a7255b57"), "Name" : "Raju", "Age" : 35, "Email" : "raju@gmail.com", "Salary" : 7000 }
+
+{ "_id" : ObjectId("6141db20e3945e33a7255b58"), "Name" : "Bhuvan", "Age" : 25, "Email" : "bhuvan@gmail.com", "Salary" : 10000 }
+
+> db.empDetails.find({$text:{$search:"Mohan Bhuvan"}})
+
+{ "_id" : ObjectId("6141db20e3945e33a7255b58"), "Name" : "Bhuvan", "Age" : 25, "Email" : "bhuvan@gmail.com", "Salary" : 10000 }
+
+{ "_id" : ObjectId("6141db0be3945e33a7255b56"), "Name" : "Mohan", "Age" : 30, "Email" : "mohan@gmail.com", "Salary" : 5000 }
