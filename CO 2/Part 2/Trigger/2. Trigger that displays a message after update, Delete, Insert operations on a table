@@ -1,0 +1,25 @@
+//Trigger Creation
+
+create or replace trigger trg
+  2  after update or insert or delete on emp1
+  3  for each row
+  4  begin
+  5  if updating then
+  6  dbms_output.put_line('updated');
+  7  elsif inserting then
+  8  dbms_output.put_line('insertion done');
+  9  elsif deleting then
+ 10  dbms_output.put_line('deleted');
+ 11  end if;
+ 12  end;
+ 13  /
+ 
+ 
+insert into emp1 values(5,'Babu',29000);
+//insertion done
+
+delete from emp1 where id=4;
+//deleted
+
+update emp1 set salary=32000 where id=2;
+//updated
