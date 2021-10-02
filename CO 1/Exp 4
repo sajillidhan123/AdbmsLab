@@ -1,0 +1,99 @@
+//Table creation
+
+create table Emply(name varchar2(10),da number(10),hra number(10),ta number(10),salary number(10));
+
+//Insertion
+
+insert into Emply values('&name','&da','&hra','&ta','&salary');
+Enter value for name: Allu
+Enter value for da: 1000
+Enter value for hra: 2000
+Enter value for ta: 1000
+Enter value for salary: 15000
+old   1: insert into Emply values('&name','&da','&hra','&ta','&salary')
+new   1: insert into Emply values('Allu','1000','2000','1000','15000')
+
+
+
+insert into Emply values('&name','&da','&hra','&ta','&salary');
+Enter value for name: Akhil
+Enter value for da: 1000
+Enter value for hra: 3000
+Enter value for ta: 15000
+Enter value for salary: 20000
+old   1: insert into Emply values('&name','&da','&hra','&ta','&salary')
+new   1: insert into Emply values('Akhil','1000','3000','15000','20000')
+
+insert into Emply values('&name','&da','&hra','&ta','&salary');
+Enter value for name: Babu
+Enter value for da: 500
+Enter value for hra: 2000
+Enter value for ta: 500
+Enter value for salary: 90000
+old   1: insert into Emply values('&name','&da','&hra','&ta','&salary')
+new   1: insert into Emply values('Babu','500','2000','500','90000')
+
+insert into Emply values('&name','&da','&hra','&ta','&salary');
+Enter value for name: Shella
+Enter value for da: 900
+Enter value for hra: 2500
+Enter value for ta: 1000
+Enter value for salary: 11000
+old   1: insert into Emply values('&name','&da','&hra','&ta','&salary')
+new   1: insert into Emply values('Shella','900','2500','1000','11000')
+
+insert into Emply values('&name','&da','&hra','&ta','&salary');
+Enter value for name: Zebha
+Enter value for da: 1500
+Enter value for hra: 1000
+Enter value for ta: 2000
+Enter value for salary: 100000
+old   1: insert into Emply values('&name','&da','&hra','&ta','&salary')
+new   1: insert into Emply values('Zebha','1500','1000','2000','100000')
+
+select * from Emply;
+
+NAME               DA        HRA         TA     SALARY
+---------- ---------- ---------- ---------- ----------
+Allu             1000       2000       1000      15000
+Akhil            1000       3000      15000      20000
+Babu              500       2000        500      90000
+Shella            900       2500       1000      11000
+Zebha            1500       1000       2000     100000
+
+
+A) create view Emplyview as select name,salary from Emply where salary >10000;
+
+
+select * from Emplyview;
+
+       NAME           SALARY
+      ---------- ----------
+       Allu            15000
+       Akhil           20000
+       Babu            90000
+       Shella          11000
+       Zebha          100000
+	   
+	   
+B) update Emply set salary = 25000;
+
+select * from Emply;
+
+       NAME               DA        HRA         TA     SALARY
+     ---------- ---------- ---------- ---------- ----------
+       Allu             1000       2000       1000      25000
+       Akhil            1000       3000      15000      25000
+       Babu              500       2000        500      25000
+       Shella            900       2500       1000      25000
+       Zebha            1500       1000       2000      25000
+
+select * from Emplyview;
+
+        NAME           SALARY
+      ---------- ----------
+        Allu            25000
+        Akhil           25000
+        Babu            25000
+        Shella          25000
+        Zebha           25000
