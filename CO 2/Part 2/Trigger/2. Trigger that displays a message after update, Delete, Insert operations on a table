@@ -1,25 +1,79 @@
-//Trigger Creation
+Create a trigger that displays a message after update, Delete, Insert operations on a table.
+
+
+desc emp1;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER(38)
+ NAME                                               VARCHAR2(20)
+ SALARY                                             NUMBER(38)
+
+
+select * from emp1;
+
+        ID NAME                     SALARY
+---------- -------------------- ----------
+         1 maneesha                  25000
+         2 anu                       30000
+         3 aravind                   27000
+         4 manu                      20000
+
+//Trigger
 
 create or replace trigger trg
-  2  after update or insert or delete on emp1
-  3  for each row
-  4  begin
-  5  if updating then
-  6  dbms_output.put_line('updated');
-  7  elsif inserting then
-  8  dbms_output.put_line('insertion done');
-  9  elsif deleting then
- 10  dbms_output.put_line('deleted');
- 11  end if;
- 12  end;
- 13  /
- 
- 
+after update or insert or delete on emp1
+for each row
+begin
+if updating then
+dbms_output.put_line('updated');
+elsif inserting then
+dbms_output.put_line('insertion done');
+elsif deleting then
+dbms_output.put_line('deleted');
+end if;
+end;
+/
+
+
+//Insertion
+
 insert into emp1 values(5,'Babu',29000);
-//insertion done
+insertion done
+
+select * from emp1;
+
+        ID NAME                     SALARY
+---------- -------------------- ----------
+         1 maneesha                  25000
+         2 anu                       30000
+         3 aravind                   27000
+         4 manu                      20000
+         5 Babu                      29000
+
+//Deletion
 
 delete from emp1 where id=4;
-//deleted
+deleted
+
+1select * from emp1;
+
+        ID NAME                     SALARY
+---------- -------------------- ----------
+         1 maneesha                  25000
+         2 anu                       30000
+         3 aravind                   27000
+         5 Babu                      29000
+
+//Updation
 
 update emp1 set salary=32000 where id=2;
-//updated
+updated
+
+select * from emp1;
+
+        ID NAME                     SALARY
+---------- -------------------- ----------
+         1 maneesha                  25000
+         2 anu                       32000
+         3 aravind                   27000
+         5 Babu                      29000
