@@ -1,0 +1,22 @@
+//Trigger Creation
+
+create trigger tr1
+BEFORE INSERT OR UPDATE OR DELETE ON item FOR EACH ROW
+begin
+raise_application_error(-20010,'you are not permitted to do this operation');
+end;
+/
+
+//Insertion
+
+insert into item values(5555,'Sweets',100);
+
+
+-----------------------------------------------------------------------
+
+Output
+
+ERROR at line 1:
+ORA-20010: you are not permitted to do this operation
+ORA-06512: at "SYSTEM.TR1", line 2
+ORA-04088: error during execution of trigger 'SYSTEM.TR1'
