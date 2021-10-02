@@ -1,3 +1,30 @@
+//Table Creation
+
+CREATE TABLE EBILL(EBNO INT PRIMARY KEY,NAME VARCHAR(20),UNITS INT,CHARGES FLOAT);
+
+
+//Insertion
+
+INSERT INTO EBILL VALUES(1,'SHELLHA',100,99.9);
+
+INSERT INTO EBILL VALUES(2,'SNEHA',200,88.8);
+
+INSERT INTO EBILL VALUES(3,'BABU',300,77.7);
+
+INSERT INTO EBILL VALUES(4,'SANJU',400,66.6);
+
+
+SELECT * FROM EBILL;
+
+      EBNO NAME                      UNITS    CHARGES
+---------- -------------------- ---------- ----------
+         1 SHELLHA                    100       99.9
+         2 SNEHA                      200       88.8
+         3 BABU                       300       77.7
+         4 SANJU                      400       66.6
+
+
+
 DECLARE
 CURSOR BILL IS SELECT * FROM EBILL;
 BEGIN
@@ -13,3 +40,13 @@ END IF;
 END LOOP;
 END;
 /
+
+
+SELECT * FROM EBILL;
+
+      EBNO NAME                      UNITS    CHARGES
+---------- -------------------- ---------- ----------
+         1 SHELLHA                    100        100
+         2 SNEHA                      200        400
+         3 BABU                       300        600
+         4 SANJU                      400        800
