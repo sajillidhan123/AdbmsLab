@@ -1,5 +1,36 @@
-//Cursor 
+//Table Creation
 
+create table IAmarks(reg_no int primary key,scode varchar(10),Test1 number(10),Test2 number(10),Test3 number(10),Final_IAmarks number(10));
+
+//Insertion
+
+insert into IAmarks values(101,'CLAB112',45,34,12,null);
+
+insert into IAmarks values(104,'DBMS123',33,22,35,null);
+
+insert into IAmarks values(345,'Pythn236',44,43,42,null);
+
+ 
+ desc IAmarks;
+ 
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ REG_NO                                    NOT NULL NUMBER(38)
+ SCODE                                              VARCHAR2(10)
+ TEST1                                              NUMBER(10)
+ TEST2                                              NUMBER(10)
+ TEST3                                              NUMBER(10)
+ FINAL_IAMARKS                                      NUMBER(10)
+
+select * from IAmarks;
+
+    REG_NO SCODE           TEST1      TEST2      TEST3 FINAL_IAMARKS
+---------- ---------- ---------- ---------- ---------- -------------
+       101 CLAB112            45         34         12
+       104 DBMS123            33         22         35
+       345 Pythn236           44         43         42
+	   
+	   
 create or replace procedure avgmarks is
 cursor curs is
 select greatest(Test1,Test2) as A,greatest(Test1,Test3) as B,greatest(Test3,Test2) as C
@@ -25,8 +56,19 @@ update IAmarks set Final_IAmarks=C_AV where current of curs;
 end loop;
 close curs;
 end;
- /
- 
- //Execution
- 
- exec avgmarks;
+/
+
+
+
+exec avgmarks;
+45 45 34
+33 35 35
+44 44 43
+
+select * from IAmarks;
+
+    REG_NO SCODE           TEST1      TEST2      TEST3 FINAL_IAMARKS
+---------- ---------- ---------- ---------- ---------- -------------
+       101 CLAB112            45         34         12            40
+       104 DBMS123            33         22         35            34
+       345 Pythn236           44         43         42            44
