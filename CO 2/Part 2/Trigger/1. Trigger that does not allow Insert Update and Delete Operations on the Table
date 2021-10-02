@@ -1,4 +1,17 @@
-//Trigger Creation
+Create a Simple Trigger that does not allow Insert,Update and Delete Operations on the Table.
+
+
+SQL> select * from item;
+
+   ITEM_ID ITEMNAME                  PRICE
+---------- -------------------- ----------
+      2334 Geera                    206.25
+      2532 Corn soup                 34.65
+      2124 Lays                         20
+      4531 Set                       99.99
+      2319 Duracell                   45.5
+
+//Trigger
 
 create trigger tr1
 BEFORE INSERT OR UPDATE OR DELETE ON item FOR EACH ROW
@@ -8,14 +21,9 @@ end;
 /
 
 //Insertion
-
 insert into item values(5555,'Sweets',100);
 
-
------------------------------------------------------------------------
-
-Output
-
+            
 ERROR at line 1:
 ORA-20010: you are not permitted to do this operation
 ORA-06512: at "SYSTEM.TR1", line 2
