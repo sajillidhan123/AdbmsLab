@@ -1,0 +1,12 @@
+//Trigger Creation
+
+create or replace trigger tr2
+before insert on emp1
+for each row
+begin
+:new.name:=upper(:new.name);
+end;
+ /
+ 
+ 
+
