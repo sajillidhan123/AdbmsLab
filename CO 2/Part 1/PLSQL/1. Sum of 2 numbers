@@ -10,3 +10,13 @@ dbms_output.put_line('Sum of '||a||' and '||b||' is '||c);
 end;
 /
 
+---------------------------------------------------------------------------------------------------
+Output
+
+Enter value for a: 5
+old   6:      a:=&a;
+new   6:      a:=10;
+Enter value for b: 10
+old   7:      b:=&b;
+new   7:      b:=20;
+sum of 5 and 10 is 15
