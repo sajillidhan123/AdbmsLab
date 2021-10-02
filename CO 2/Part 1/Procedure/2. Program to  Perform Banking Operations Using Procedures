@@ -1,0 +1,50 @@
+//Table Creation
+
+create table account_details(acc_no int,name varchar(20),balance int);
+
+//Table Insertion
+
+insert into account_details values(&acc_no,'&name',&balance);
+
+
+//Procedure For Withdraw
+
+create or replace procedure withdraw(acc_no1 in number,amount in number) is
+begin 
+update account_details set balance=balance-amount where acc_no=acc_no1;
+end;
+/
+
+
+//Procedure For Deposit
+
+create or replace procedure deposit(acc_no1 in number,amount in number) is
+begin
+update account_details set balance=balance+amount where acc_no=acc_no1;
+end;
+/
+
+
+
+
+
+//Program
+
+declare
+acc_no1 number(5);
+amount number(5);
+choice number;
+begin
+dbms_output.put_line('1.Deposit 2.Withdraw');
+acc_no1:=&account;
+choice:=&choice;
+amount:=&amount;
+if choice=1 then
+deposit(acc_no1,amount);
+else
+withdraw(acc_no1,amount);
+end if;
+end;
+
+
+
