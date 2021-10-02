@@ -1,0 +1,35 @@
+//Function Creation
+
+create or replace function pow (n1 number,n2 number) return number as
+res number;
+begin
+select power (n1,n2) into res from dual;
+return res;
+end;
+/
+
+//Program
+
+declare
+a number;
+b number;
+begin
+a:=&a;
+b:=&b;
+dbms_output.put_line('power(n1,n2)='||pow(a,b));
+end;
+/
+
+
+-----------------------------------------------------------------------------------------------------------------
+
+Output
+
+
+Enter value for a: 2
+old   5: a:=&a;
+new   5: a:=2;
+Enter value for b: 4
+old   6: b:=&b;
+new   6: b:=4;
+power(n1,n2)=16
