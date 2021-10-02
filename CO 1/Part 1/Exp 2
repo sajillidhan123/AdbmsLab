@@ -182,10 +182,3 @@ F) select company_name from works group by company_name having avg (salary)>(sel
             
 G) Select company_name,salary from works group by company_name,salary having max(salary)>(select max(salary)from works group by company_name having company_name='SBI');
 
-
-
-SQL> commit;
-
-Commit complete.
-
-SQL> commit;
