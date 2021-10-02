@@ -1,4 +1,5 @@
-//Trigger Creation
+Create a row-level trigger for the customers table that would fire for UPDATE operations performed on the CUSTOMERS table. 
+This trigger should display the salary difference between the old values and new values
 
 CREATE OR REPLACE TRIGGER TRG1
 BEFORE UPDATE ON CUSTOMERS FOR EACH ROW
@@ -12,3 +13,50 @@ DBMS_OUTPUT.PUT_LINE('NEW SALARY:'||:NEW.SALARY);
 DBMS_OUTPUT.PUT_LINE('SALARY DIFFERENCE:'||SAL_DIFFERENCE);
 END;
 /
+
+
+
+SELECT * FROM CUSTOMERS;
+
+        ID NAME                        AGE            ADDRESS            SALARY
+-----------------------------------------------------------------------------------
+         1 Dilsha                       32           AHMEDABAD            2000
+
+         2 Harsha                       25             DELHI              1500
+
+         3 Anagha                       32             MAYSOOR            2000
+
+         4 Babu                         23              KOTA              2000
+
+         5 Zhan                         25             MUMBAI             6500
+
+         6 Hardik                       27             BHOPAL             8500
+
+         7 Raju                         22               MP               4500
+
+         8 Ammu                         24             INDORE             1000
+
+
+
+
+UPDATE CUSTOMERS SET SALARY=6000 WHERE ID=7;
+
+SELECT * FROM CUSTOMERS;
+
+        ID NAME                        AGE            ADDRESS            SALARY
+-----------------------------------------------------------------------------------
+         1 Dilsha                       32           AHMEDABAD            2000
+
+         2 Harsha                       25             DELHI              1500
+
+         3 Anagha                       32             MAYSOOR            2000
+
+         4 Babu                         23              KOTA              2000
+
+         5 Zhan                         25             MUMBAI             6500
+
+         6 Hardik                       27             BHOPAL             8500
+
+         7 Raju                         22               MP               6000
+
+         8 Ammu                         24             INDORE             1000
