@@ -1,0 +1,22 @@
+Declare 
+n number;
+fact number:=1;
+begin
+n:=&number;
+for i in 1..n
+loop
+fact:=fact*i;
+end loop;
+dbms_output.put_line('Factorial of '||n||' is '||fact);
+end;
+/
+
+
+----------------------------------------------------------
+
+Output
+
+Enter value for number: 5
+old   5:          n:=&number;
+new   5:          n:=10;
+Factorial of 5 is 120
